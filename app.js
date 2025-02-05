@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express= require('express');
 const socket= require('socket.io');
 const http = require('http');
@@ -5,7 +6,7 @@ const {Chess}= require('chess.js');
 const path= require("path"); 
 
 const app = express();
-const PORT=3040
+const port=3040||process.env.PORT
 
 const server=http.createServer(app);
 const io = socket(server);
@@ -84,7 +85,7 @@ io.on("connection",(uniqueSocket)=>{
 });
 
 server.listen(3040,()=>{
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${port}`);
 
 
 })
